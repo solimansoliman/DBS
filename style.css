@@ -1,0 +1,1091 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* --- متغيرات CSS الرئيسية --- */
+:root {
+    --hover-bg-color:#c7c18b;
+    --text-a-b-hover-color: #c4c4c4;
+    --text-a-color: #ffffff;
+    --primary-color: #797447;
+    --secondary-color: #000000;
+    --light-color: #f4f4f4;
+    --dark-color: #ebeaac;
+    --text-color: #555;
+    --font-family: 'Cairo', sans-serif;
+    --header-height: 54px;
+    --transition-speed: 0.3s;
+    --neural-particle-color: #4dd0e1;
+    --accent-color: #4dd0e1;
+    --neural-bg-color: rgba(235, 234, 172, 0.15);
+    --neural-opacity: 0.8;
+}
+
+/* --- إعادة تعيين الأنماط الأساسية --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- الخلفية المتحركة --- */
+#neural-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: var(--dark-color);
+    opacity: var(--neural-opacity);
+}
+
+#neuralCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+/* --- التنسيقات العامة --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    overflow: hidden;
+}
+
+h1, h2, h3, h4 {
+    color: var(--secondary-color);
+    margin-bottom: 0.7rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- الأزرار --- */
+.btn, .btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.btn:hover, .btn-primary:hover {
+    background-color: var(--hover-bg-color);
+    
+}
+
+
+
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: var(--header-height);
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.logo a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 38px;
+    margin: 0;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+.logo-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: colorChange 5s infinite alternate;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.logo-subtitle {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+#nav-links {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+#nav-links.active {
+    right: 0;
+}
+
+#nav-links li {
+    margin: 0;
+}
+
+#nav-links li a {
+    padding: 15px 20px;
+    color: var(--secondary-color);
+    display: block;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#nav-links li a:hover,
+#nav-links li a.active {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+#nav-links li a.active {
+    background: var(--primary-color);
+    color: #fff !important;
+    font-weight: bold;
+    
+    /* يمكنك إضافة تأثير إضافي إذا رغبت */
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.08); */
+}
+
+#menu-toggle {
+    display: block;
+    position: absolute;
+    /*left: 20px;*/ /* في العربي، يكون على اليسار */
+    right: 310px; /* في العربي، يكون على اليسار */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 66px;
+    height: 66px;
+    margin-top: 40px;
+    
+}
+
+
+/* --- قسم الهيرو --- */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--secondary-color);
+    padding-top: var(--header-height);
+    backdrop-filter: blur(3px);
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.7)
+    );
+}
+
+.hero-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero-section p {
+    order: 2;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 0.1rem;
+    max-width: 600px;
+}
+
+.hero-logo {
+    order: 4;
+    margin-top: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- الأقسام العامة --- */
+
+
+.content-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.content-section h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+/* --- قسم الخدمات --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.service-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* --- قسم المشاريع --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.project-item {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    min-height: 150px; /* مثال */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:dotted 1px #666666;
+    background-color: #e2dcbb59;
+}
+
+
+/* --- قسم اتصل بنا --- */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+#contact-form button {
+    width: 100%;
+}
+
+/* --- الفوتر --- */
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- استجابة الموبايل --- */
+/* تم نقل جميع تنسيقات قائمة الموبايل إلى ملف mobile-nav.css */
+/* إذا وجدت أي @media (max-width: 900px) تخص #nav-links أو #menu-toggle أو header .container أو عناصر القائمة، احذفها من هنا */
+
+
+
+#neuralCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+:root {
+    --neural-particle-color: #4dd0e1;
+    --accent-color: #4dd0e1;
+    --dark-color: #222;
+}
+
+#neuralCanvas { /* تنسيق الكانفاس الجديد */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block; /* لإزالة أي مسافات إضافية قد يضيفها المتصفح */
+}
+
+/* 
+   قم بإزالة أو التعليق على قواعد CSS التالية 
+   لأن الجسيمات سيتم رسمها الآن على الكانفاس:
+*/
+
+
+
+
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+
+
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo a {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 60px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+header #nav-links {
+    display: flex;
+}
+
+header #nav-links li {
+    margin-left: 20px; /* في العربي، الـ margin يكون على اليمين */
+    margin-right: 0;
+}
+
+
+
+
+#menu-toggle {
+    display: none; /* مخفي في الشاشات الكبيرة */
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- قسم الهيرو --- */
+
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+.hero-logo {
+    order: 4;
+    margin-top: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- الأقسام العامة --- */
+
+
+.content-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.content-section h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+/* --- قسم الخدمات --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.service-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* --- قسم المشاريع --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* --- قسم اتصل بنا --- */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+#contact-form button {
+    width: 100%;
+}
+
+/* --- الفوتر --- */
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- استجابة الموبايل --- */
+/* تم نقل جميع تنسيقات قائمة الموبايل إلى ملف mobile-nav.css */
+/* إذا وجدت أي @media (max-width: 900px) تخص #nav-links أو #menu-toggle أو header .container أو عناصر القائمة، احذفها من هنا */
+
+/* مثال على الحذف: */
+@media (max-width: 900px) {
+    header .container {
+        padding: 0 10px;
+    }
+}
+/* احذف هذا البلوك لأنه أصبح في mobile-nav.css */
+
+/* ...احتفظ بباقي التنسيقات العامة فقط... */
+
+@media (min-width: 901px) {
+    #nav-links {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        padding: 0;
+        display: flex !important;
+        gap: 15px;
+    }
+    
+    #menu-toggle {
+        display: none;
+    }
+
+    #nav-links li a {
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        color: var(--secondary-color);
+    }
+
+    #nav-links li a:hover,
+    #nav-links li a.active {
+        background: var(--primary-color);
+        color: #fff;
+    }
+}
+
+
+
+#neuralCanvas { /* تنسيق الكانفاس الجديد */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block; /* لإزالة أي مسافات إضافية قد يضيفها المتصفح */
+}
+
+/* 
+   قم بإزالة أو التعليق على قواعد CSS التالية 
+   لأن الجسيمات سيتم رسمها الآن على الكانفاس:
+*/
+
+
+
+
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-light {
+    background-color: var(--light-color);
+    color: #333;
+}
+
+
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo a {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 60px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+header #nav-links {
+    display: flex;
+}
+
+header #nav-links li {
+    margin-left: 20px; /* في العربي، الـ margin يكون على اليمين */
+    margin-right: 0;
+}
+
+
+
+
+#menu-toggle {
+    display: none; /* مخفي في الشاشات الكبيرة */
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- قسم الهيرو --- */
+
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.hero-logo {
+    order: 4;
+    margin-top: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- الأقسام العامة --- */
+
+.content-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.content-section h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+/* --- قسم الخدمات --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.service-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* --- قسم المشاريع --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+
+/* --- قسم اتصل بنا --- */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+#contact-form button {
+    width: 100%;
+}
+
+/* --- الفوتر --- */
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+#neuralCanvas { /* تنسيق الكانفاس الجديد */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block; /* لإزالة أي مسافات إضافية قد يضيفها المتصفح */
+}
+
+/* 
+   قم بإزالة أو التعليق على قواعد CSS التالية 
+   لأن الجسيمات سيتم رسمها الآن على الكانفاس:
+*/
+
+
+
+
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+
+/* --- الهيدر والتنقل --- */
+header {
+    background-color: #ffffff;
+    color: var(--secondary-color);
+    padding: 3px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(116, 117, 99, 0.897);
+    transition: background-color 0.3s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo a {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 70px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+header #nav-links {
+    display: flex;
+}
+
+header #nav-links li {
+    margin-left: 20px; /* في العربي، الـ margin يكون على اليمين */
+    margin-right: 0;
+}
+
+header #nav-links li a {
+    padding: 5px 10px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+header #nav-links li a:hover{
+    background-color: var(--text-a-b-hover-color);
+}
+header #nav-links li a.active {
+    color: var(--text-a-color);
+    font-weight: bold;
+}
+
+#menu-toggle {
+    display: none; /* مخفي في الشاشات الكبيرة */
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* --- قسم الهيرو --- */
+
+.hero-section h2 {
+    order: 1;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, 
+        #ffffff, 
+        /* #b8b8b8, 
+        #f700ff, 
+        #ff0000, 
+        #d9ff00,  */
+        #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+.hero-logo {
+    order: 4;
+    margin-top: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- الأقسام العامة --- */
+.content-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9ccdf53d;/* طبقة شفافة */
+    z-index: -1;
+}
+
+.content-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.content-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.content-section h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+/* --- قسم الخدمات --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.service-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* --- قسم المشاريع --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* --- قسم اتصل بنا --- */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+#contact-form button {
+    width: 100%;
+}
+
+/* --- الفوتر --- */
+footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- الاستجابة للشاشات الصغيرة (التنقل الانزلاقي) --- */
+@media (max-width: 768px) {
+    header .container {
+        position: relative; /* للسماح بتمركز القائمة المنسدلة */
+    }
+
+    #menu-toggle {
+        display: block;
+        position: absolute;
+        /*left: 20px;*/ /* في العربي، يكون على اليسار */
+        right: 310px; /* في العربي، يكون على اليسار */
+        top: 50%;
+        transform: translateY(-50%);
+        width: 66px;
+        height: 66px;
+        margin-top: 40px;
+        
+    }
+
+    #nav-links {
+        display: none; /* إخفاء القائمة الأساسية */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* أسفل الهيدر مباشرة */
+        right: 0; /* يبدأ من اليمين في العربي */
+        background-color: #fff;
+        width: 250px; /* عرض القائمة المنسدلة */
+        box-shadow: -2px 2px 5px rgba(0,0,0,0.1); /* ظل على اليسار */
+        transform: translateX(100%); /* إخفاء القائمة خارج الشاشة إلى اليمين */
+        transition: transform 0.5s ease-in-out; /* تأثير الانزلاق */
+        padding: 1rem 0;
+        border-top: 1px solid var(--light-color);
+    }
+
+    #nav-links.active {
+        display: flex; /* إظهار القائمة عند التفعيل */
+        transform: translateX(0); /* إظهار القائمة داخل الشاشة */
+    }
+
+    #nav-links li {
+        margin: 0;
+        width: 100%;
+    }
+
+    #nav-links li a {
+        display: block;
+        padding: 15px 20px;
+        text-align: right; /* محاذاة النص لليمين */
+        border-bottom: 1px solid var(--light-color);
+    }
+    #nav-links li:last-child a {
+        border-bottom: none;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+    }
+}
+
+/* زر إلى الأعلى */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 9999;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.3s, opacity 0.3s;
+}
+#scrollTopBtn:hover {
+    background: var(--secondary-color);
+}

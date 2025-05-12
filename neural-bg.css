@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #111;
+}
+#neural-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    display: block;
+    pointer-events: none;
+    background: #000000;
+}
+body {
+    background: transparent !important;
+}
+@media (max-width: 600px) {
+    #neural-bg {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
